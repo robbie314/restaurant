@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class User extends Entity {
 
@@ -30,12 +29,25 @@ public class User extends Entity {
 		return pwHash;
 	}
 	
+	private static String makeSalt() {
+		return "asdf";
+	}
+	
 	private static String hashPassword(String password){
-		return hashPassword(password, BCrypt.gensalt());
+		return hashPassword(password, makeSalt());
 	}
 	
 	private static String hashPassword(String password, String salt) {
-		return BCrypt.hashpw(password, salt) + "," + salt;
+		
+		/*try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.reset();
+			md.update();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}*/
+		
+		return password + "," + salt;
 	}
 	
 	public boolean isValidPassword(String password) {
