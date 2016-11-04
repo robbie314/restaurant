@@ -22,6 +22,7 @@ public class PostAndUserTest extends TestCase {
 	}
 	
 	@Test
+	@SuppressWarnings("unused")
 	public void testUniqueUsername(){
 		
 		try {
@@ -48,6 +49,7 @@ public class PostAndUserTest extends TestCase {
 	
 	@Test
 	public void testIsValidUsername() {
+		// TODO - test other restrictions
 		assertFalse("Duplicate usernames are not allowed", User.isValidUsername(testUsername));
 	}
 	

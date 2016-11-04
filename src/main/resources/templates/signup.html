@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+
+	<h1>Signup</h1>
+	<form method="post">
+	    <table>
+	        <tr>
+	            <td><label for="username">Username</label></td>
+	            <td>
+	                <input name="username" type="text" th:value="${username}"></input>
+	                <span class="error" th:text="${username_error}"></span>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td><label for="password">Password</label></td>
+	            <td>
+	                <input name="password" type="password"></input>
+	                <span class="error" th:text="${password_error}"></span>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td><label for="verify">Verify Password</label></td>
+	            <td>
+	                <input name="verify" type="password"></input>
+	                <span class="error" th:text="${verify_error}"></span>
+	            </td>
+	        </tr>
+	    </table>
+	    <button type="submit">Sign Up</button>
+	</form>
+
+</body>
+</html>

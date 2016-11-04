@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+
+	<h1>blog users!</h1>
+
+	<ul>
+		<li th:each="user : ${users}"><a th:href="'/blog/' + ${user.username}"></a></li>
+	</ul>
+
+</body>
+</html>

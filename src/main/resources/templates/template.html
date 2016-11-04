@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="dochead">
+	<link th:href="@{/css/normalize.css}" rel="stylesheet" />
+	<link th:href="@{/css/styles.css}" rel="stylesheet" />
+	<title>Blogz</title>
+</head>
+
+<body>
+
+<nav th:fragment="navigation">
+	<ul id="user-account">
+	    <li><a href="/login">login</a></li>
+	    <li><a href="/logout">logout</a></li>
+	</ul>
+	<ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/blog">all posts</a></li>
+        <li><a href="/blog/newpost">new post</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
