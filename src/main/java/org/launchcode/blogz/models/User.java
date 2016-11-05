@@ -85,7 +85,7 @@ public class User extends AbstractEntity {
 	}
 	
 	@OneToMany
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author_uid")
     public List<Post> getPosts() {
         return posts;
     }
