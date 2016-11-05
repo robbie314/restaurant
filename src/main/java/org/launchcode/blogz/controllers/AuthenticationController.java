@@ -34,7 +34,7 @@ public class AuthenticationController extends AbstractController {
 		}
 		
 		if (!User.isValidUsername(username)) {
-			model.addAttribute("username_error", "Usernames must be 4-12 characters long, start with a letter, and contain only letters, numbers, _, or -");
+			model.addAttribute("username_error", "Usernames must be 5-12 characters long, start with a letter, and contain only letters, numbers, _, or -");
 			return "signup";
 		}
 		
@@ -92,5 +92,4 @@ public class AuthenticationController extends AbstractController {
         request.getSession().invalidate();
 		return "redirect:/";
 	}
-	
 }

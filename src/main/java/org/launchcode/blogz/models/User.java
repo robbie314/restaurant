@@ -11,12 +11,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 @Table(name = "user")
 public class User extends AbstractEntity {
 
 	private String username;
 	private String pwHash;
+	private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	private List<Post> posts;
 	
@@ -52,17 +55,17 @@ public class User extends AbstractEntity {
 		return username;
 	}
 	
+	private static String hashPassword(String password) {		
+		return encoder.encode(password);
+	}
+	
 	@SuppressWarnings("unused")
 	private void setUsername(String username) {
 		this.username = username;
 	}
 	
-	private static String hashPassword(String password){
-		return password;
-	}
-	
 	public boolean isMatchingPassword(String password) {
-		return this.pwHash.equals(hashPassword(password));
+		return encoder.matches(password, pwHash);
 	}
 	
 	public static boolean isValidPassword(String password) {
