@@ -4,13 +4,13 @@
 </head>
 <body>
 
-<h1>blog posts!</h1>
-
 <div th:replace="template :: navigation"></div>
+
+<h1>blog posts!</h1>
 
 <div th:each="post : ${posts}">
 
-	<h2><a th:href="'/blog/' + ${post.uid}" th:text="${post.title}"></a></h2>
+	<h2><a th:href="'/blog/' + ${post.author.username} + '/' + ${post.uid}" th:text="${post.title}"></a></h2>
 	<p th:text="${post.body}"></p>
 	<p class="post-author">written by <a th:href="'/blog/' + ${post.author.username}" th:text="${post.author.username}"></a></p>
 

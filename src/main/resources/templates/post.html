@@ -6,10 +6,12 @@
 
 	<div th:replace="template :: navigation"></div>
 
+	<p class="error" th:text="${error}"></p>
+
 	<h2 class="post-title" th:text="${post.title}"></h2>
 	<p class="post-body" th:text="${post.body}"></p>
 	<p class="post-author">
-	    written by <a th:href="'/blog/' + ${post.author.username}" th:text="${post.author.username}"></a> on <span th:text="${#dates.format(post.created, YY-MM-DD)}"></span>
+	    written by <a th:href="'/blog/' + ${post.author.username}" th:text="${post.author.username}"></a> on <span th:text="${#dates.format(post.created, 'yy-MM-dd')}"></span>
 	</p>
 
 </body>

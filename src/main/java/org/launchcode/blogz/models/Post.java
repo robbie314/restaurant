@@ -1,17 +1,25 @@
 package org.launchcode.blogz.models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Post extends Entity {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "post")
+public class Post extends AbstractEntity {
 
 	private String title;
 	private String body;
 	private User author;
-	private final Date created;
+	private Date created;
 	private Date modified;
-	private static final List<Post> allPosts = new ArrayList<Post>();
+	
+	public Post() {}
 	
 	public Post(String title, String body, User author) {
 		
@@ -22,9 +30,13 @@ public class Post extends Entity {
 		this.author = author;
 		this.created = new Date();
 		this.updated();
-		allPosts.add(this);
+		
+		author.addPost(this);
 	}
 	
+	
+	@NotNull
+    @Column(name = "title")
 	public String getTitle() {
 		return title;
 	}
@@ -34,6 +46,8 @@ public class Post extends Entity {
 		this.updated();
 	}
 
+	@NotNull
+    @Column(name = "body")
 	public String getBody() {
 		return body;
 	}
@@ -43,32 +57,41 @@ public class Post extends Entity {
 		this.updated();
 	}
 	
+	@ManyToOne
 	public User getAuthor() {
 		return author;
 	}
 	
+	@SuppressWarnings("unused")
+	private void setAuthor(User author) {
+		this.author = author;
+	}
+	
+	@NotNull
+	@OrderColumn
+	@Column(name = "created")
 	public Date getCreated() {
 		return created;
 	}
 	
+	@SuppressWarnings("unused")
+	private void setCreated(Date created) {
+		this.created = created;
+	}
+	
+	@NotNull
+	@Column(name = "modified")
 	public Date getModified() {
 		return modified;
 	}
 	
-	private void updated() {
-		this.modified = new Date();
+	@SuppressWarnings("unused")
+	private void setModified(Date modified) {
+		this.modified = modified;
 	}
 	
-	private static List<Post> getPostsByUser(User user) {
-		List<Post> postsByUser = new ArrayList<Post>();
-		
-		for (Post post : allPosts) {
-			if (post.getAuthor().equals(user)) {
-				postsByUser.add(post);
-			}
-		}
-		
-		return postsByUser;
+	private void updated() {
+		this.modified = new Date();
 	}
 	
 }

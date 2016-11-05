@@ -9,7 +9,7 @@
 	<h1>blog users!</h1>
 
 	<ul>
-		<li th:each="user : ${users}"><a th:href="'/blog/' + ${user.username}"></a></li>
+		<li th:each="user : ${users}"><a th:href="'/blog/' + ${user.username}" th:text="${user.username}"></a></li>
 	</ul>
 
 </body>

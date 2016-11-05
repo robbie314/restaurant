@@ -58,8 +58,8 @@ public class PostAndUserTest extends TestCase {
 	
 	@Test
 	public void testIsValidPassword() {
-		assertTrue("A user's correct password should validate", testUser.isValidPassword(testPassword));
-		assertFalse("A different password should not validate", testUser.isValidPassword(testPassword + "1"));
+		assertTrue("A user's correct password should validate", testUser.isMatchingPassword(testPassword));
+		assertFalse("A different password should not validate", testUser.isMatchingPassword(testPassword + "1"));
 	}
 	
 }
