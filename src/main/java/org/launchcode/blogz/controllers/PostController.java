@@ -23,34 +23,24 @@ public class PostController extends AbstractController {
 	@RequestMapping(value = "/blog/newpost", method = RequestMethod.POST)
 	public String newPost(HttpServletRequest request, Model model) {
 		
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
-		User author = getUserFromSession(request.getSession());
+		// TODO - implement newPost
 		
-		if (author == null) {
-			model.addAttribute("error", "You must log in before posting");
-			return "redirect:login";
-		}
-		
-		Post newpost = new Post(title, body, author);
-		postDao.save(newpost);
-		
-		model.addAttribute("post", newpost);		
-		return "redirect:" + author.getUid() + "/" + newpost.getUid();
+		return "redirect:index"; // TODO - this redirect should go to the new post's page  		
 	}
 	
 	@RequestMapping(value = "/blog/{username}/{uid}", method = RequestMethod.GET)
 	public String singlePost(@PathVariable String username, @PathVariable int uid, Model model) {
-		Post post = postDao.findByUid(uid);
-		model.addAttribute(post);
+		
+		// TODO - implement singlePost
+		
 		return "post";
 	}
 	
 	@RequestMapping(value = "/blog/{username}", method = RequestMethod.GET)
 	public String userPosts(@PathVariable String username, Model model) {
-		User user = userDao.findByUsername(username);
-		List<Post> posts = user.getPosts();
-		model.addAttribute("posts", posts);
+		
+		// TODO - implement userPosts
+		
 		return "blog";
 	}
 	
