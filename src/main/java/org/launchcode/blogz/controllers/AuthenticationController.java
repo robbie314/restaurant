@@ -71,7 +71,7 @@ public class AuthenticationController extends AbstractController {
 		
 		// user not found in db
 		if (user == null) {
-			model.addAttribute("error", "There is no user with username: <b>" + username + "</b>");
+			model.addAttribute("error", "There is no user with username: " + username);
 			return "login";
 		}
 		
