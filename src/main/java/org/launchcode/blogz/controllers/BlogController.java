@@ -1,5 +1,6 @@
 package org.launchcode.blogz.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.launchcode.blogz.models.Post;
@@ -15,7 +16,8 @@ public class BlogController extends AbstractController {
 	public String index(Model model){
 		
 		// TODO - fetch users and pass to template
-		
+		List<User> users =userDao.findAll();
+		model.addAttribute("users", users);
 		return "index";
 	}
 	
@@ -23,6 +25,9 @@ public class BlogController extends AbstractController {
 	public String blogIndex(Model model) {
 		
 		// TODO - fetch posts and pass to template
+		List<Post> posts = postDao.findAll();
+		Collections.reverse(posts);
+		model.addAttribute("posts", posts);
 		
 		return "blog";
 	}
