@@ -31,6 +31,12 @@ public class PostController extends AbstractController {
 		String title=request.getParameter("title");
 		String body=request.getParameter("body");
 		//validate parameters
+		if (body.length() > 255) {
+			model.addAttribute("error", "Maximum number of characters in the body is 255.");
+			model.addAttribute("title", title);
+			model.addAttribute("body", body);
+			return "newpost";
+		}
 		if (title.equals("") || body.equals("")) {
 			model.addAttribute("error", "Please provide a title and a body.");
 			model.addAttribute("title", title);
