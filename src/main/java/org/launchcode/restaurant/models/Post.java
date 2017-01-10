@@ -1,4 +1,4 @@
-package org.launchcode.blogz.models;
+package org.launchcode.restaurant.models;
 
 import java.util.Date;
 
@@ -15,13 +15,13 @@ public class Post extends AbstractEntity {
 
 	private String title;
 	private String body;
-	private User author;
+	private Employee author;
 	private Date created;
 	private Date modified;
 	
 	public Post() {}
 	
-	public Post(String title, String body, User author) {
+	public Post(String title, String body, Employee author) {
 		
 		super();
 		
@@ -58,12 +58,12 @@ public class Post extends AbstractEntity {
 	}
 	
 	@ManyToOne
-	public User getAuthor() {
+	public Employee getAuthor() {
 		return author;
 	}
 	
 	@SuppressWarnings("unused")
-	private void setAuthor(User author) {
+	private void setAuthor(Employee author) {
 		this.author = author;
 	}
 	

@@ -1,4 +1,4 @@
-package org.launchcode.blogz.controllers;
+package org.launchcode.restaurant.controllers;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.launchcode.blogz.models.Post;
-import org.launchcode.blogz.models.User;
+import org.launchcode.restaurant.models.Post;
+import org.launchcode.restaurant.models.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +45,7 @@ public class PostController extends AbstractController {
 		}
 		//if valid, create new Post
 		HttpSession thisSession=request.getSession();
-		User thisUser = this.getUserFromSession(thisSession);
+		Employee thisUser = this.getUserFromSession(thisSession);
 		Post newPost = new Post(title, body, thisUser);
 		postDao.save(newPost);
 		//if not valid, send them back to the form with error message
@@ -67,7 +67,7 @@ public class PostController extends AbstractController {
 			return "404";	
 		}
 		
-		User author = p.getAuthor();
+		Employee author = p.getAuthor();
 		if (!author.getUsername().equals(username)) {
 			model.addAttribute("error", "There is no post with id " + uid + " by user " + username );
 			return "404";
@@ -83,7 +83,7 @@ public class PostController extends AbstractController {
 		// TODO - implement userPosts
 		
 		//get all of the user's posts
-		User u = userDao.findByUsername(username);
+		Employee u = employeeDao.findByUsername(username);
 		List<Post> posts = postDao.findByAuthor(u);
 		Collections.reverse(posts);
 		//pass the posts into the template

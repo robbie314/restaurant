@@ -1,11 +1,11 @@
-package org.launchcode.blogz.models.dao;
+package org.launchcode.restaurant.models.dao;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.launchcode.blogz.models.Post;
-import org.launchcode.blogz.models.User;
+import org.launchcode.restaurant.models.Post;
+import org.launchcode.restaurant.models.Employee;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostDao extends CrudRepository<Post, Integer> {
     
-    List<Post> findByAuthor(User u);
+    List<Post> findByAuthor(Employee u);
     
     // TODO - add method signatures as needed
 	List<Post> findAll();

@@ -1,10 +1,10 @@
-package org.launchcode.blogz.controllers;
+package org.launchcode.restaurant.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.launchcode.blogz.models.User;
-import org.launchcode.blogz.models.dao.UserDao;
+import org.launchcode.restaurant.models.Employee;
+import org.launchcode.restaurant.models.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthenticationController extends AbstractController {
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	@RequestMapping(value = "/registeremployee", method = RequestMethod.GET)
 	public String signupForm() {
-		return "signup";
+		return "registeremployee";
 	}
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	@RequestMapping(value = "/registeremployee", method = RequestMethod.POST)
 	public String signup(HttpServletRequest request, Model model) {
 		
 		// TODO - implement signup
@@ -33,33 +33,33 @@ public class AuthenticationController extends AbstractController {
 		if (!password.equals(verify)) {
 			model.addAttribute("verify_error", "Passwords do not match.");
 			model.addAttribute("username", username);
-			return "signup";
+			return "registeremployee";
 		} else {
 			
-			if (!User.isValidUsername(username)) {
+			if (!Employee.isValidUsername(username)) {
 				model.addAttribute("username_error", "Username is not valid.");
-				return "signup";
+				return "registeremployee";
 				
-			} else if (!User.isValidPassword(password)){
+			} else if (!Employee.isValidPassword(password)){
 				model.addAttribute("password_error", "Password is not valid.");
 				model.addAttribute("username", username);
-				return "signup";
+				return "registeremployee";
 				
 			}
 		}
 		
 		//if they validate, create a new user, and put them in the session
-		User u= userDao.findByUsername(username);
+		Employee u= employeeDao.findByUsername(username);
 		if (u == null) {
-			User newUser= new User(username, password);
-			userDao.save(newUser);
+			Employee newUser= new Employee(username, password);
+			employeeDao.save(newUser);
 			HttpSession thisSession = request.getSession();
 			this.setUserInSession(thisSession, newUser); 
 			
-			return "redirect:blog/newpost";
+			return "redirect:/customerlookup";
 		} else{
 			model.addAttribute("username_error", "That username already exists!");
-			return "signup";
+			return "registeremployee";
 		}
 		
 	}
@@ -97,13 +97,13 @@ public class AuthenticationController extends AbstractController {
 			return "login";
 		}
 		
-		User u= userDao.findByUsername(username);
+		Employee u= employeeDao.findByUsername(username);
 		if (u == null) {
 			model.addAttribute("error", "Login failed. Username/Password does not exist.");
 			model.addAttribute("username", username);
 			return "login";
 		}
-		System.out.println(User.hashPassword(password)+ " " + u.getPwHash());
+		System.out.println(Employee.hashPassword(password)+ " " + u.getPwHash());
 		if (u.isMatchingPassword(password)) {
 			HttpSession thisSession = request.getSession();
 			this.setUserInSession(thisSession, u); 
@@ -117,7 +117,7 @@ public class AuthenticationController extends AbstractController {
 		// log them in, if so (i.e., setting the user in the session) might create helper method if need to - not
 		
 				
-		return "redirect:blog/newpost";
+		return "redirect:/customerlookup";
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-package org.launchcode.blogz.models;
+package org.launchcode.restaurant.models;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-@Table(name = "user")
-public class User extends AbstractEntity {
+@Table(name = "employee")
+public class Employee extends AbstractEntity {
 
 	private String username;
 	private String pwHash;
@@ -26,9 +26,9 @@ public class User extends AbstractEntity {
 	
 	//no-argument constructor, for Hibernate
 	
-	public User() {}
+	public Employee() {}
 	
-	public User(String username, String password) {
+	public Employee(String username, String password) {
 		
 		super();
 		

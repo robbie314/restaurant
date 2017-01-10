@@ -1,23 +1,23 @@
-package org.launchcode.blogz.controllers;
+package org.launchcode.restaurant.controllers;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.launchcode.blogz.models.Post;
-import org.launchcode.blogz.models.User;
+import org.launchcode.restaurant.models.Post;
+import org.launchcode.restaurant.models.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BlogController extends AbstractController {
+public class EmployeeController extends AbstractController {
 
 	@RequestMapping(value = "/")
 	public String index(Model model){
 		
 		// TODO - fetch users and pass to template
-		List<User> users =userDao.findAll();
-		model.addAttribute("users", users);
+		List<Employee> employees =employeeDao.findAll();
+		model.addAttribute("employees", employees);
 		return "index";
 	}
 	
