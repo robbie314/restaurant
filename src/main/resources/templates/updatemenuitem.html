@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+
+	<h1>Update Menu Item</h1>
+	<form method="post">
+		<table>
+			<tr>
+				<td><label for="name">Name</label></td>
+				<td><input name="name" type="text" th:value="${menuitem.name}"></input>
+
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><span class="error" th:text="${name_error}"></span></td>
+			</tr>
+			<tr>
+				<td><label for="description">Description</label></td>
+				<td><textarea name="description" rows="5"
+						th:text="${menuitem.description}"></textarea></td>
+			</tr>
+			<tr>
+				<td><label for="price">Price</label></td>
+				<td><input name="price" type="text"
+					th:value="${menuitem.price}"></input></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><span class="error" th:text="${price_error}"></span></td>
+			</tr>
+			<tr>
+				<td><label for="status"> Status</label></td>
+				<td><select th:field="*{status}">
+						<option th:each="status : ${allStatuses}" th:value="${status}"
+						
+							th:text="#{${status}}">Active</option>
+				</select></td>
+			</tr>
+
+		</table>
+		<button type="submit">Update</button>
+	</form>
+
+</body>
+</html>
+

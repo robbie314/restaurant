@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+
+	<h1>Customer Lookup</h1>
+	
+	<form method="post">
+		<table>
+			<tr>
+				<td><label for="phoneNumber">Customer Phone Number</label></td>
+				<td><input name="phoneNumber" type="text"
+					th:value="${phoneNumber}"></input></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><span class="error" th:text="${phoneNumber_error}"></span>
+				</td>
+
+			</tr>
+
+		</table>
+		<button type="submit">Lookup</button>
+	</form>
+ <p><a href="/createcustomer">Create a new customer!</a></p>
+
+</body>
+</html>
+

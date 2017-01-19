@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+<div th:replace="template :: navigation"></div>
+
+<h1>Menu</h1>
+
+<table border="1">
+	<tr>
+		<th>Name
+		</th>
+		<th>Description
+		</th>
+		<th>Price
+		</th>
+		<th>Status
+		</th>
+		
+	</tr>
+	<tr th:each = "menuitem  : ${menuitems}">
+		<td th:text = "${menuitem.name}"></td>
+		<td th:text = "${menuitem.description}"></td>
+		<td th:text = "${menuitem.price}"></td>
+		<td th:text = "${menuitem.status}"></td>
+		
+	</tr>
+</table>
+<br></br>
+<br></br>
+
+<form action = "/addmenuitem"><button type = "submit">Add Menu Item</button>
+</form>
+<!--  
+<table>
+String[] columnNames = {"Name", "Description", "Price", "Status" };
+Object[][] data = {
+            {"Salad", "Mixed Greens and croutons", "$3.99", "Active"},
+            {"Hummus & Pita", "Homemade pita bread with world famous hummus",
+	 "$5.99", "Active"},
+	{“Chicken Wings”, “Buffalo style hot wings”, “$6.99”, “Active”},
+	{“Calamari”, “Battered and deep fried squid served with lemon and aioli sauce”, “$7.99”, “Active”},
+	{“Soup”, “Vegetable and barley soup in tomato base”, “3.99”, “Active”}, 
+	{“Potato Fries”, “Baked potato waffle fries”, “$2.99”, “Inactive”},
+	{“Apple Pie”, “Homemade Dutch apple pie”, “$2.99”, “Active”},
+	{“Chicken Pot Pie”, “Homemade with non-antibiotic chicken and vegetables in a creamy sauce”, “$8.99”, “Active”},
+{“Fish Dinner”, “Baked or fried cod with tartar sauce served with potato fries and salad”, “$12.99”, “Active”}
+{“Beef Dinner”, “Sauteed beef tips in rosemary and garlic with au jus served with potato fries and salad”, “$12.99”, “Active”}
+{“Pork Dinner”, “Baked pork belly with tamari sauce served with potato fries and salad”, “$11.99”, “Active”},
+{“Veggie Dinner”, “Mixed vegetables with rice or pasta in a lemon garlic butter sauce”, “$10.99”, “Active”},
+{“Cake”, “Homemade chocolate icing with moist yellow cake”, “$3.99”, “Active”}, 
+{“Ice Cream”, “In-house churched vanilla ice cream with real vanilla beans”, “$3.99”, “Active”},
+{“Fruit Bowl”, “A mix of fresh strawberries, blueberries, raspberries, cantaloupe, grapes, and cherries”, “$4.99”, “Active”},
+
+
+(“Soft Drink”, “fizzy soda water with cherry, grape, cola, or lemon-lime flavor”, “$1.99”, “Active”};
+</table>
+-->
+<!--  
+<div th:each="menuitem : ${menuitems}">
+
+	<h2><a th:href="'/blog/' + ${post.author.username} + '/' + ${post.uid}" th:text="${post.title}"></a></h2>
+	<p th:text="${post.body}"></p>
+	<p class="post-author">written by <a th:href="'/blog/' + ${post.author.username}" th:text="${post.author.username}"></a></p>
+
+</div>
+ -->
+</body>
+</html>

@@ -16,13 +16,13 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    EmployeeDao userDao;
+    EmployeeDao employeeDao;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
     	
     	//restricted URLs
-        List<String> authPages = Arrays.asList("/blog/newpost");
+        List<String> authPages = Arrays.asList("/customerlookup", "/createcustomer", "/menu", "/addmenuitem", "/customerinformation", "/updatemenuitem");
 
         // Require sign-in for auth pages
         if ( authPages.contains(request.getRequestURI()) ) {
@@ -32,7 +32,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             Integer userId = (Integer) request.getSession().getAttribute(AbstractController.userSessionKey);
 
             if (userId != null) {
-            	user = userDao.findByUid(userId);
+            	user = employeeDao.findByUid(userId);
             	
             	if (user != null) {
             		isLoggedIn = true;

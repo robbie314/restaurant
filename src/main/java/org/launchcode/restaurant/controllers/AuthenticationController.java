@@ -22,7 +22,7 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/registeremployee", method = RequestMethod.POST)
 	public String signup(HttpServletRequest request, Model model) {
 		
-		// TODO - implement signup
+		// Implementing signup for employee
 		//get parameters from request
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
@@ -48,7 +48,7 @@ public class AuthenticationController extends AbstractController {
 			}
 		}
 		
-		//if they validate, create a new user, and put them in the session
+		//if they validate, create a new employee, and put them in the session
 		Employee u= employeeDao.findByUsername(username);
 		if (u == null) {
 			Employee newUser= new Employee(username, password);
@@ -72,7 +72,7 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model) {
 		
-		// TODO - implement login
+		// Implementing employee login
 		
 		// get parameters from request
 		String username=request.getParameter("username");
@@ -114,7 +114,7 @@ public class AuthenticationController extends AbstractController {
 			return "login";
 		}
 		
-		// log them in, if so (i.e., setting the user in the session) might create helper method if need to - not
+		// log them in, if so (i.e., setting the employee in the session) might create helper method if need to - not
 		
 				
 		return "redirect:/customerlookup";
