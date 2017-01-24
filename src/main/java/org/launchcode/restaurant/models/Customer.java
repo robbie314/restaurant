@@ -23,9 +23,9 @@ public class Customer extends AbstractEntity {
 	
 	
 	//all posts by a given user
-	private List<Post> posts;
+	private List<OrderHistory> orderHistories;
 	
-	//no-argument constructor, for Hibernate
+	//
 	
 	public Customer() {}
 	
@@ -103,13 +103,15 @@ public class Customer extends AbstractEntity {
 	
 	
 	@OneToMany
-    @JoinColumn(name = "author_uid")
-    public List<Post> getPosts() {
-        return posts;
+    @JoinColumn(name = "order_history_uid")
+    public List<OrderHistory> getOrderHistories() {
+        return orderHistories;
     }
 	
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
+	public void setOrderHistories(List<OrderHistory> orderHistories) {
+		this.orderHistories = orderHistories;
 	}
-	
+	public void addOrderHistory(OrderHistory orderHistory) {
+		orderHistories.add(orderHistory);
+	}
 }

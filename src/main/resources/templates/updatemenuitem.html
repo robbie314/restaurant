@@ -8,6 +8,7 @@
 
 	<h1>Update Menu Item</h1>
 	<form method="post">
+		
 		<table>
 			<tr>
 				<td><label for="name">Name</label></td>
@@ -36,10 +37,9 @@
 			</tr>
 			<tr>
 				<td><label for="status"> Status</label></td>
-				<td><select th:field="*{status}">
-						<option th:each="status : ${allStatuses}" th:value="${status}"
-						
-							th:text="#{${status}}">Active</option>
+				<td><select name="status">
+						<option th:selected="${menuitem.status.equals('Active')}" th:text="Active">Active</option>
+						<option th:selected="${menuitem.status.equals('Inactive')}" th:text="Inactive">Inactive</option>
 				</select></td>
 			</tr>
 

@@ -21,7 +21,7 @@
 		
 	</tr>
 	<tr th:each = "menuitem  : ${menuitems}">
-		<td th:text = "${menuitem.name}"></td>
+		<td ><a th:href="'/updatemenuitem/'+${menuitem.uid}" th:text= "${menuitem.name}"></a></td>
 		<td th:text = "${menuitem.description}"></td>
 		<td th:text = "${menuitem.price}"></td>
 		<td th:text = "${menuitem.status}"></td>

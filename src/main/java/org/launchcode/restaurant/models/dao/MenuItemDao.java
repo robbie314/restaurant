@@ -16,7 +16,8 @@ public interface MenuItemDao extends CrudRepository<MenuItem, Integer> {
     
     List<MenuItem> findAll();
     
-    // TODO - add method signatures as needed
+    // d 
+  //  @Query(value="SELECT * FROM menu_item mi WHERE BINARY mi.name = BINARY ?1 ", nativeQuery = true)
     MenuItem findByName(String name);
 }
 

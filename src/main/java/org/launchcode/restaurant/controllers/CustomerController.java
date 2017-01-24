@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.launchcode.restaurant.models.Customer;
+import org.launchcode.restaurant.models.MenuItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +25,7 @@ public class CustomerController extends AbstractController {
 		return "customerlookup";
 	}
 	
+	
 	@RequestMapping(value = "/customerlookup", method = RequestMethod.POST)
 	public String lookUp(HttpServletRequest request, Model model) {
 		String phoneNumber=request.getParameter("phoneNumber");
@@ -39,7 +42,7 @@ public class CustomerController extends AbstractController {
 			return "customerlookup";
 		} else{
 			
-			return "redirect:/customerinformation";
+			return "redirect:/customerinformation/"+c.getUid();
 		}
 	}
 	
@@ -47,7 +50,7 @@ public class CustomerController extends AbstractController {
 	@RequestMapping(value = "/createcustomer", method = RequestMethod.POST)
 	public String signup(HttpServletRequest request, Model model) {
 		
-		// TODO - implement signup
+		// TODO - implement 
 		//get parameters from request
 		String phoneNumber=request.getParameter("phoneNumber");
 		String verifyPhoneNumber=request.getParameter("verifyPhoneNumber");
@@ -84,7 +87,7 @@ public class CustomerController extends AbstractController {
 			}
 		}
 		
-		//if they validate, create a new user, and put them in the session
+		//if they validate, create a new customer, and put them in the session
 		Customer c= customerDao.findByPhoneNumber(phoneNumber);
 		if (c == null) {
 			Customer newUser= new Customer(firstName, lastName, email, phoneNumber);
@@ -101,4 +104,16 @@ public class CustomerController extends AbstractController {
 		}
 		
 	}
+	@RequestMapping(value = "/customerinformation/{uid}", method = RequestMethod.GET)
+	public String customerInformation(@PathVariable int uid, Model model) {
+		Customer c = customerDao.findByUid(uid);
+		if (c == null) {
+			model.addAttribute("error", "There is no customer with that id " + uid);
+			return "404";
+		}
+			model.addAttribute("customer", c);
+		return "customerinformation";
+	}
+	
 }
+
