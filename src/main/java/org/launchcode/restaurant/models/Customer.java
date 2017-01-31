@@ -24,6 +24,7 @@ public class Customer extends AbstractEntity {
 	
 	//all posts by a given user
 	private List<OrderHistory> orderHistories;
+	private List<CartItem> cartItems;
 	
 	//
 	
@@ -114,4 +115,17 @@ public class Customer extends AbstractEntity {
 	public void addOrderHistory(OrderHistory orderHistory) {
 		orderHistories.add(orderHistory);
 	}
+	@OneToMany
+    @JoinColumn(name = "cart_item_uid")
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+	
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+	public void addCartItem(CartItem cartItem) {
+		cartItems.add(cartItem);
+	}
 }
+

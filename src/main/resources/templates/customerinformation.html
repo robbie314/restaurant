@@ -11,42 +11,52 @@
 	<table>
 		<tr>
 			<td><label>Phone Number</label></td>
-			<td><label th:text = "${customer.phoneNumber}"></label></td>
+			<td><label th:text="${customer.phoneNumber}"></label></td>
 		</tr>
 		<tr>
 			<td><label>First Name</label></td>
-			<td><label th:text = "${customer.firstName}"></label></td>
+			<td><label th:text="${customer.firstName}"></label></td>
 		</tr>
 		<tr>
 			<td><label>Last Name</label></td>
-			<td><label th:text = "${customer.lastName}"></label></td>
+			<td><label th:text="${customer.lastName}"></label></td>
 		</tr>
 		<tr>
 			<td><label>Email</label></td>
-			<td><label th:text = "${customer.email}"></label></td>
+			<td><label th:text="${customer.email}"></label></td>
 		</tr>
-			
+
 	</table>
-	<p><a href="'/updatecustomer/'+${customer.uid}">Update Customer</a></p>
+	<p>
+		<a href="'/updatecustomer/'+${customer.uid}">Update Customer</a>
+	</p>
+
+	<h2>Menu</h2>
+	<div>
+		<span th:each="menuitem:${menuitems}"><a
+			th:href="'/addtocart/'+${customer.uid}+'/'+${menuitem.uid}"
+			th:text="${menuitem.name}"></a> | </span>
+	</div>
+	<h2>Cart</h2>
+	<table>
+		<tr>
+			<th>Quantity</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Remove Item</th>
+		</tr>
+		<tr th:each="cartitem:${cartitems}">
+			<td th:text="${cartitem.quantity}"></td>
+			<td th:text="${cartitem.menuItem.name}"></td>
+			<td th:text="${cartitem.price}"></td>
+			<td><a
+				th:href="'/removefromcart/'+${customer.uid}+'/'+${cartitem.uid}"
+				th:text="Remove"></a></td>
+		</tr>
+
+
+
+	</table>
 	
-	<form method="post">
-		<table>
-			<tr>
-				<td><label for="phoneNumber">Customer Phone Number</label></td>
-				<td><input name="phoneNumber" type="text"
-					th:value="${phoneNumber}"></input></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><span class="error" th:text="${phoneNumber_error}"></span>
-				</td>
-
-			</tr>
-
-		</table>
-		<button type="submit">Lookup</button>
-	</form>
- <p><a href="/createcustomer">Create a new customer!</a></p>
-
 </body>
 </html>

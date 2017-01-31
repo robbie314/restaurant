@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface MenuItemDao extends CrudRepository<MenuItem, Integer> {
 
     MenuItem findByUid(int uid);
+    List <MenuItem> findByStatus(String status);
     
     List<MenuItem> findAll();
     

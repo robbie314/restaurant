@@ -3,6 +3,7 @@ package org.launchcode.restaurant.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.launchcode.restaurant.models.Employee;
+import org.launchcode.restaurant.models.dao.CartItemDao;
 import org.launchcode.restaurant.models.dao.CustomerDao;
 import org.launchcode.restaurant.models.dao.EmployeeDao;
 import org.launchcode.restaurant.models.dao.MenuItemDao;
@@ -23,6 +24,8 @@ public abstract class AbstractController {
 	@Autowired
 	protected MenuItemDao menuItemDao;
 	
+	@Autowired
+	protected CartItemDao cartItemDao;
 
     public static final String userSessionKey = "user_id";
 

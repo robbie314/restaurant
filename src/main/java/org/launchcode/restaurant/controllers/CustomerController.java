@@ -104,16 +104,6 @@ public class CustomerController extends AbstractController {
 		}
 		
 	}
-	@RequestMapping(value = "/customerinformation/{uid}", method = RequestMethod.GET)
-	public String customerInformation(@PathVariable int uid, Model model) {
-		Customer c = customerDao.findByUid(uid);
-		if (c == null) {
-			model.addAttribute("error", "There is no customer with that id " + uid);
-			return "404";
-		}
-			model.addAttribute("customer", c);
-		return "customerinformation";
-	}
 	
 }
 
