@@ -28,7 +28,7 @@
 
 	</table>
 	<p>
-		<a href="'/updatecustomer/'+${customer.uid}">Update Customer</a>
+		<a th:href="'/updatecustomer/'+${customer.uid}">Update Customer</a>
 	</p>
 
 	<h2>Menu</h2>
@@ -38,7 +38,7 @@
 			th:text="${menuitem.name}"></a> | </span>
 	</div>
 	<h2>Cart</h2>
-	<table>
+	<table border="1">
 		<tr>
 			<th>Quantity</th>
 			<th>Name</th>
@@ -48,7 +48,7 @@
 		<tr th:each="cartitem:${cartitems}">
 			<td th:text="${cartitem.quantity}"></td>
 			<td th:text="${cartitem.menuItem.name}"></td>
-			<td th:text="${cartitem.price}"></td>
+			<td th:text="${#numbers.formatDecimal(cartitem.price, 0,'COMMA', 2, 'POINT')}"></td>
 			<td><a
 				th:href="'/removefromcart/'+${customer.uid}+'/'+${cartitem.uid}"
 				th:text="Remove"></a></td>
@@ -57,6 +57,35 @@
 
 
 	</table>
+	<p>
+		Total Price: $<span th:text="${#numbers.formatDecimal(totalPrice, 0,'COMMA', 2, 'POINT')}"></span>
+	</p>
+
+	<h2>Recommendations</h2>
+	<div>
+		<span th:each="menuitem:${recommendations}"><a
+			th:href="'/addtocart/'+${customer.uid}+'/'+${menuitem.uid}"
+			th:text="${menuitem.name}"></a> | </span>
+	</div>
 	
+	<h2>Order History</h2>
+	<table border="1">
+		<tr>
+			<th>Quantity</th>
+			<th>Name</th>
+			<th>Last Order Date</th>
+		</tr>
+		<tr th:each="oh: ${orderhistory}">
+			<td th:text="${oh.quantity}"></td>
+			<td th:text="${oh.menuItem.name}"></td>
+			<td th:text="${#dates.format(oh.orderDate, 'MM-dd-yyyy hh:mm:ss a')}"></td>
+		</tr>
+
+	</table>
+	<br></br>
+	<form th:action="'/submitorder/'+${customer.uid}" method="GET">
+		<button type="submit">Submit Order</button>
+	</form>
+	<span class="error" th:text="${order_error}"></span>
 </body>
 </html>

@@ -16,17 +16,19 @@ public class OrderHistory extends AbstractEntity {
 	private Customer customer;
 	private MenuItem menuItem;
 	private Date orderDate;
+	private int quantity;
 	
 	
 	
 	public OrderHistory() {}
 	
-	public OrderHistory(Customer customer, MenuItem menuItem) {
+	public OrderHistory(Customer customer, MenuItem menuItem, int quantity) {
 		
 		super();
 		
 		this.customer = customer;
 		this.menuItem = menuItem;
+		this.quantity = quantity;
 		
 		this.orderDate = new Date();
 		
@@ -67,6 +69,19 @@ public class OrderHistory extends AbstractEntity {
 		this.orderDate = orderDate;
 	}
 	
+	@NotNull
+	@Column(name = "quantity")
+	public int getQuantity() {
+		return quantity;
+	}
 	
-	
+	@SuppressWarnings("unused")
+	private void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public void addQuantity(int quantity) {
+		this.quantity += quantity;
+		this.orderDate = new Date();
+		
+	}
 }

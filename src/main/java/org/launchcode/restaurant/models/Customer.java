@@ -55,7 +55,7 @@ public class Customer extends AbstractEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	private void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 	@NotNull
@@ -65,7 +65,7 @@ public class Customer extends AbstractEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	private void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	@NotNull
@@ -75,7 +75,7 @@ public class Customer extends AbstractEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	private void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
@@ -85,7 +85,7 @@ public class Customer extends AbstractEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	

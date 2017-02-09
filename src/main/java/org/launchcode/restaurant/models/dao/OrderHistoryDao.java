@@ -14,8 +14,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderHistoryDao extends CrudRepository<OrderHistory, Integer> {
     
-    List<Customer> findByCustomer(Customer c);
-    List<MenuItem> findByMenuItem(MenuItem mi);
+    List<OrderHistory> findByCustomer(Customer c);
+    List<OrderHistory> findByMenuItem(MenuItem mi);
+    List<OrderHistory> findByCustomerOrderByOrderDateDesc(Customer c);
+    List<OrderHistory> findByCustomerOrderByQuantityDesc(Customer c);
+    OrderHistory findByCustomerAndMenuItem(Customer c, MenuItem mi);
     
     // TODO -
 	List<OrderHistory> findAll();
